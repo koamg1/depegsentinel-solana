@@ -1,0 +1,26 @@
+[package]
+name = "depegsentinel-solana"
+version = "0.1.0"
+authors = ["Draybels Díaz Hernández <wjesus19697106@gmail.com>", "Koam Analytics"]
+edition = "2021"
+description = "High-performance pre-oracle liquidity risk engine, sub-slot OFI analyzer, and non-linear invariant solver for Solana DeFi"
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/koamg1/depegsentinel-solana"
+readme = "README.md"
+keywords = ["solana", "defi", "risk", "microstructure", "stableswap"]
+categories = ["cryptography::cryptocurrencies", "finance", "algorithms"]
+
+[dependencies]
+bytemuck = { version = "1.14", features = ["derive"] }
+num-traits = { version = "0.2", default-features = false }
+serde = { version = "1.0", default-features = false, features = ["derive"] }
+
+[dev-dependencies]
+criterion = "0.5"
+
+[[bench]]
+name = "solver_benchmarks"
+harness = false
+
+[lib]
+crate-type = ["cdylib", "rlib"]
