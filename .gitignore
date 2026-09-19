@@ -1,0 +1,33 @@
+# Rust
+/target/
+**/*.rs.bk
+Cargo.lock
+
+# Python
+__pycache__/
+*.py[cod]
+*.class
+.venv/
+env/
+venv/
+*.egg-info/
+dist/
+build/
+
+# Secrets & Environment
+*.env
+*.env.*
+*.enc
+*.key
+*.pem
+*.secret
+*.vault
+
+# IDE & OS
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+*.log
