@@ -1,7 +1,7 @@
 use depegsentinel_solana::curve::StableswapSolver;
-use depegsentinel_solana::ofi::{SlotOrderFlowImbalance, LevelQuote};
-use depegsentinel_solana::slippage::ExecutionSlippageCliff;
+use depegsentinel_solana::ofi::{LevelQuote, SlotOrderFlowImbalance};
 use depegsentinel_solana::pre_oracle::PreOracleHazardIndex;
+use depegsentinel_solana::slippage::ExecutionSlippageCliff;
 
 #[test]
 fn test_stableswap_invariant_convergence() {
@@ -23,8 +23,18 @@ fn test_stableswap_simulate_swap() {
 #[test]
 fn test_ofi_calculation() {
     let mut ofi = SlotOrderFlowImbalance::new();
-    let q1 = LevelQuote { bid_price: 1.0, bid_qty: 1000.0, ask_price: 1.0001, ask_qty: 1000.0 };
-    let q2 = LevelQuote { bid_price: 1.0, bid_qty: 1500.0, ask_price: 1.0001, ask_qty: 800.0 };
+    let q1 = LevelQuote {
+        bid_price: 1.0,
+        bid_qty: 1000.0,
+        ask_price: 1.0001,
+        ask_qty: 1000.0,
+    };
+    let q2 = LevelQuote {
+        bid_price: 1.0,
+        bid_qty: 1500.0,
+        ask_price: 1.0001,
+        ask_qty: 800.0,
+    };
     let val1 = ofi.update(q1);
     let val2 = ofi.update(q2);
     assert_eq!(val1, 0.0);
@@ -36,6 +46,7 @@ fn test_pre_oracle_hazard_index() {
     let hazard_safe = PreOracleHazardIndex::evaluate_hazard(0.1, 1.2, 1.000, 0.001, 0.9998, 0.95);
     assert!(hazard_safe < 0.50);
 
-    let hazard_danger = PreOracleHazardIndex::evaluate_hazard(3.8, -4.5, 1.000, 0.001, 0.9250, 0.20);
+    let hazard_danger =
+        PreOracleHazardIndex::evaluate_hazard(3.8, -4.5, 1.000, 0.001, 0.9250, 0.20);
     assert!(hazard_danger > 0.85); // High alert for bad debt
 }
