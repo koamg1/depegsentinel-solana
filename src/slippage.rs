@@ -1,5 +1,5 @@
 //! Execution Slippage Cliff Analyzer
-//! 
+//!
 //! Predicts non-linear execution slippage across discrete tick arrays
 //! in Orca Whirlpools, Raydium CLMM, and Meteora DLMM bins.
 
@@ -9,7 +9,11 @@ pub struct ExecutionSlippageCliff;
 impl ExecutionSlippageCliff {
     /// Computes the effective slippage penalty Lambda(Q) for liquidation volume Q.
     /// If liquidation volume exceeds cumulative active tick depth, slippage spikes exponentially.
-    pub fn calculate_slippage_cliff(liquidation_usd: f64, active_tick_depth_usd: f64, reserve_asymmetry: f64) -> f64 {
+    pub fn calculate_slippage_cliff(
+        liquidation_usd: f64,
+        active_tick_depth_usd: f64,
+        reserve_asymmetry: f64,
+    ) -> f64 {
         if active_tick_depth_usd <= 0.0 {
             return 100.0; // 100% slippage collapse
         }

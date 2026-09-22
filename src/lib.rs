@@ -13,5 +13,5 @@ pub mod pre_oracle;
 
 pub use curve::StableswapSolver;
 pub use ofi::SlotOrderFlowImbalance;
-pub use slippage::ExecutionSlippageCliff;
 pub use pre_oracle::PreOracleHazardIndex;
+pub use slippage::ExecutionSlippageCliff;

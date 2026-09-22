@@ -1,5 +1,5 @@
 //! Pre-Oracle Hazard Index Lambda(t)
-//! 
+//!
 //! Synthesizes DEX order book depth, OFI, and Pyth Network / Switchboard
 //! confidence intervals to detect liquidation hazard before on-chain oracle heartbeats.
 
@@ -34,8 +34,7 @@ impl PreOracleHazardIndex {
         let alpha_3 = 1.20;
         let alpha_4 = 0.50;
 
-        let z = (alpha_1 * z_score_vol_400ms)
-            - (alpha_2 * ofi_slot)
+        let z = (alpha_1 * z_score_vol_400ms) - (alpha_2 * ofi_slot)
             + (alpha_3 * (delta_oracle / conf_ratio.max(1e-4)))
             + (alpha_4 * (1.0 - depth_ratio_top5));
 

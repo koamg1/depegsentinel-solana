@@ -1,5 +1,5 @@
 //! Slot-by-Slot Order Flow Imbalance (OFI) Engine for Solana
-//! 
+//!
 //! Measures net order flow pressure across 400ms slots to detect aggressive
 //! liquidity drainage before prices re-anchor.
 
